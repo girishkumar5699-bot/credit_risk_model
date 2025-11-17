@@ -1,0 +1,40 @@
+{
+  "model": "LightGBM Classifier",
+  "target_variable": "loan_status",
+  "metrics": {
+    "auc_score": 0.9522,
+    "accuracy": 0.91,
+    "precision": 0.89,
+    "recall": 0.87,
+    "f1_score": 0.88
+  },
+  "interpretability": {
+    "shap": {
+      "global_top_features": [
+        "person_income",
+        "loan_percent_income",
+        "loan_intent_VENTURE",
+        "loan_int_rate",
+        "person_home_ownership_OWN"
+      ],
+      "local_explanations": 3,
+      "summary_plot": "outputs/shap_summary_plot.png",
+      "force_plots": [
+        "outputs/shap_force_low_risk.html",
+        "outputs/shap_force_high_risk.html",
+        "outputs/shap_force_borderline.html"
+      ]
+    },
+    "lime": {
+      "local_explanations": 3,
+      "html_outputs": [
+        "outputs/lime_explanation_low_risk.html",
+        "outputs/lime_explanation_high_risk.html",
+        "outputs/lime_explanation_borderline.html"
+      ]
+    }
+  },
+  "model_artifacts": {
+    "saved_model": "outputs/bestmodel.pkl"
+  }
+}
