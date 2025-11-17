@@ -1,0 +1,56 @@
+# SHAP vs LIME: Comparative Analysis for Credit Risk Scoring
+
+## Objective
+This analysis compares SHAP (SHapley Additive exPlanations) and LIME (Local Interpretable Model-Agnostic Explanations) in the context of a LightGBM-based credit risk model. The goal is to evaluate their effectiveness in explaining model predictions for individual loan applicants.
+
+---
+
+## Case Study Summary
+
+Three representative loan applications were selected:
+
+- **Low-Risk Case**: High income, low loan-to-income ratio, long credit history
+- **High-Risk Case**: High interest rate, short employment, high loan burden
+- **Borderline Case**: Mixed signals across income, loan intent, and credit history
+
+---
+
+## SHAP Insights
+
+- **Global Interpretability**: SHAP provides a ranked list of features influencing model predictions across the entire dataset.
+- **Local Explanations**: SHAP force plots show how each feature pushes an individual prediction toward default or non-default.
+- **Consistency**: SHAP explanations are consistent with model logic and reflect true feature contributions.
+
+---
+
+## LIME Insights
+
+- **Local Interpretability**: LIME generates a linear surrogate model around each instance to approximate the model’s behavior.
+- **Case-Specific Clarity**: LIME highlights the top 10 features influencing a single prediction, useful for manual review.
+- **Perturbation-Based**: LIME explanations may vary depending on sampling and are sensitive to feature encoding.
+
+---
+
+## Key Differences
+
+| Aspect                  | SHAP                                      | LIME                                      |
+|------------------------|-------------------------------------------|-------------------------------------------|
+| Scope                  | Global + Local                            | Local only                                |
+| Method                 | Game-theoretic (Shapley values)           | Local surrogate model                     |
+| Stability              | High (consistent across runs)             | Medium (sampling-dependent)               |
+| Feature Interactions   | Captures interactions                     | Assumes linearity                         |
+| Business Use Case      | Risk profiling, fairness, compliance      | Case-by-case justification                |
+
+---
+
+## Observations from Case Studies
+
+- Both SHAP and LIME agreed on key drivers like `person_income` and `loan_percent_income`.
+- SHAP provided more stable and nuanced explanations, especially for borderline cases.
+- LIME was easier to interpret visually for non-technical stakeholders but occasionally overemphasized categorical features.
+
+---
+
+## Conclusion
+
+SHAP is preferred for global risk analysis, fairness audits, and regulatory transparency. LIME is valuable for explaining individual decisions to loan officers. Together, they provide a robust interpretability framework for credit risk modeling.
